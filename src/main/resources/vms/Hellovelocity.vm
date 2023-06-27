@@ -1,0 +1,14 @@
+#set( $iAmVariable = "good!" )
+#set( $lover = "高倩")
+#set ($bonnie = "陈佳妍")
+Welcome $name to velocity.com
+today is $date.
+#foreach ($i in $list)
+    $i
+#end
+$iAmVariable
+$lover
+$bonnie
+#parse("vms/niki.vm")
+
+#include("vms/niki.vm")

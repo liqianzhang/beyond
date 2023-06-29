@@ -1,6 +1,5 @@
 package com.practice.util;
 
-import com.sun.istack.internal.NotNull;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.util.Assert;
@@ -467,7 +466,7 @@ public class DateUtils {
      * @param endDate   截止日期2 (格式yyyy-MM-dd)
      * @return
      */
-    public static int getMonthsBetween(@NotNull() Date startDate, @NotNull() Date endDate) {
+    public static int getMonthsBetween( Date startDate,   Date endDate) {
         Calendar c1 = Calendar.getInstance();
         Calendar c2 = Calendar.getInstance();
         c1.setTime(DateUtils.parseDate(startDate));

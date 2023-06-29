@@ -47,8 +47,6 @@ public class NikiController {
         String niki = nikiService.getNiki();
         User user = new User();
         user.setId(1);
-        user.setUsername("Niki");
-        user.setPassword("1231");
         RedisUtil.set("niki_2020", "我爱高倩");
         String niki_2020 = RedisUtil.get("niki_2020").toString();
         log.info("key niki_2020的值是 {}", niki_2020);

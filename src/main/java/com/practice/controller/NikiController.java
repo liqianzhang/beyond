@@ -119,7 +119,9 @@ public class NikiController {
     }
 
     @RequestMapping("/saveAccessDetail")
-    public WxInfo saveAccessDetail(HttpServletRequest request,HttpServletResponse response, @RequestParam("code") String code) throws IOException {
+    public WxInfo saveAccessDetail(HttpServletRequest request, HttpServletResponse response, @RequestParam("code") String code) throws IOException {
+        log.info("NikiController.saveAccessDetail。。。。。。。。。。。。。。。。。。。。。。。。。。。");
+
         String userAgent = request.getHeader("user-agent").toLowerCase();
         WxInfo wxInfo = new WxInfo();
 
@@ -151,15 +153,24 @@ public class NikiController {
         return wxInfo;
     }
 
+    // http://niki.nat300.top/share/middle
     @RequestMapping("/share/middle")
     public String middle(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("NikiController.middle。。。。。。。。。。。。。。。。。。。。。。。。。。。");
         String userAgent = request.getHeader("user-agent").toLowerCase();
+        String redirectUrl = "http://niki.nat300.top/saveAccessDetail";
+        String encodeRedirectUrl = URLEncoder.encode(redirectUrl, "UTF-8");
+        log.info("。。。微信渠道URL编码前={}",redirectUrl);
+        log.info("。。。微信渠道URL编码后={}",encodeRedirectUrl);
         if (userAgent.indexOf("micromessenger") != -1) {
             log.info("==>用户访问的方式是微信渠道");
-            response.sendRedirect("https://open.weixin.qq.com/connect/oauth2/authorize?redirect_uri=http://niki.nat300.top/saveAccessDetail&appid=wxb00b277049d87059&response_type=code&scope=snsapi_base&state=1#wechat_redirect");
+            String wxRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?redirect_uri=" + encodeRedirectUrl + "&appid=wxb00b277049d87059&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+             response.sendRedirect(wxRedirectUrl);
         } else {
             log.info("==>用户访问的方式是其他渠道");
-            response.sendRedirect("http://niki.nat300.top/saveAccessDetail?code=123");
+            String otherRedirectUrl = redirectUrl + "?code=123";
+            log.info("。。。。。。。。。。。其他渠道URL={}", otherRedirectUrl);
+            response.sendRedirect(otherRedirectUrl);
         }
         return "";
     }

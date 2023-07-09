@@ -5,6 +5,9 @@ import org.springframework.util.DigestUtils;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
 /**
  * @MethodName: $
  * @Description: TODO
@@ -14,6 +17,7 @@ import sun.misc.BASE64Encoder;
  * @Date: $
  */
 public class CryptTest {
+
     private static final BASE64Decoder decoder = new BASE64Decoder();
     private static final BASE64Encoder encoder = new BASE64Encoder();
     private static final Base64 base64 = new Base64();
@@ -55,12 +59,16 @@ public class CryptTest {
     }
 
     public static void main(String[] args) throws Exception {
-//        String s= CryptTest.encryptBASE64("我爱高倩");
+        String s= CryptTest.encryptBASE64("我爱高倩");
 //        System.out.println(s);
 //        System.out.println(CryptTest.decryptBASE64(s));
+        String md5Encode = getMd5Encode(s);
+        String url = "/tjweb/m?t=" + md5Encode;
+        System.out.println("url = " + url);
+        System.out.println(URLEncoder.encode(url, "UTF-8"));
+        System.out.println(URLDecoder.decode(url, "UTF-8"));
 
-        String md5Encode = getMd5Encode("我爱高倩");
-        System.out.println("md5Encode = " + md5Encode);
+
     }
 
     public static String getMd5Encode(String passWord) {

@@ -42,7 +42,7 @@ public class ZooKeeperTests {
           System.out.printf("delete multi executed");
           closeLatch.countDown();
         };
-    zk = new ZooKeeper("localhost", 2181, new DefaultWatcher());
+    zk = new ZooKeeper("192.168.0.177", 2181, new DefaultWatcher());
     startLatch.await();
   }
 

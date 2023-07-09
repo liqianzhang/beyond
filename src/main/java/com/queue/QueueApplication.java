@@ -16,7 +16,8 @@ import org.apache.commons.cli.*;
 /**
  * @Desctiption SpringBoot Application
  * @Author wallace
- * @Date 2021/6/4
+ * @Date 2021/6/
+ * 疑问：这和消息队列有什么关系？核心代码能够自己写出来
  */
 public class QueueApplication {
 	public static void main(String args[]) throws Exception{

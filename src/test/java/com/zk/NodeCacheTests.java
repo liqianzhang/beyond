@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 import static com.google.common.truth.Truth.assertThat;
 
 public class NodeCacheTests {
-  private String connectString = "localhost:2181";
+  private String connectString = "192.168.0.177:2181";
 
   @Test
   public void testBasics() throws Exception {
@@ -22,7 +22,7 @@ public class NodeCacheTests {
     client.start();
 
     try {
-      String basePath = "/test";
+      String basePath = "/zk";
       client.create().forPath(basePath);
 
       String nodePath = basePath + "/node";

@@ -165,6 +165,7 @@ public class NikiController {
         if (userAgent.indexOf("micromessenger") != -1) {
             log.info("==>用户访问的方式是微信渠道");
             String wxRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?redirect_uri=" + encodeRedirectUrl + "&appid=wxb00b277049d87059&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+            log.info("==>重定向到微信的链接是{}" ,wxRedirectUrl);
              response.sendRedirect(wxRedirectUrl);
         } else {
             log.info("==>用户访问的方式是其他渠道");
@@ -175,6 +176,27 @@ public class NikiController {
         return "";
     }
 
+    @RequestMapping("/share/middle2")
+    public String middle2(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("NikiController.middle2。。。。。。。。。。。。。。。。。。。。。。。。。。。");
+        String userAgent = request.getHeader("user-agent").toLowerCase();
+        String redirectUrl = "http://niki.nat300.top/saveAccessDetail";
+        String encodeRedirectUrl = URLEncoder.encode(redirectUrl + "&appid=wxb00b277049d87059&response_type=code&scope=snsapi_base&state=1#wechat_redirect", "UTF-8");
+        log.info("。。。微信渠道URL编码前={}",redirectUrl + "&appid=wxb00b277049d87059&response_type=code&scope=snsapi_base&state=1#wechat_redirect");
+        log.info("。。。微信渠道URL编码后={}",encodeRedirectUrl);
+        if (userAgent.indexOf("micromessenger") != -1) {
+            log.info("==>用户访问的方式是微信渠道");
+            String wxRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?redirect_uri=" + encodeRedirectUrl;
+            log.info("==>重定向到微信的链接是{}" ,wxRedirectUrl);
+            response.sendRedirect(wxRedirectUrl);
+        } else {
+            log.info("==>用户访问的方式是其他渠道");
+            String otherRedirectUrl = redirectUrl + "?code=123";
+            log.info("。。。。。。。。。。。其他渠道URL={}", otherRedirectUrl);
+            response.sendRedirect(otherRedirectUrl);
+        }
+        return "";
+    }
 //    @RequestMapping("/getOpenIdBySdk")
 //    public void getOpenIdBySdk(HttpServletRequest request, HttpServletResponse response) throws WxErrorException {
 //        log.info("==> 通过微信sdk方式。。。。。。。。。。。。。。。。。。。。。");

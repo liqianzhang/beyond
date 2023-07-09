@@ -26,7 +26,7 @@ public class WatcherTests {
   @Before
   public void setUp() throws IOException, InterruptedException {
     DefaultWatcher gw = new DefaultWatcher(this);
-    zk = new ZooKeeper("localhost", 2181, gw);
+    zk = new ZooKeeper("192.168.0.177", 2181, gw);
     // Wait for the connection establishment
     gw.await();
   }

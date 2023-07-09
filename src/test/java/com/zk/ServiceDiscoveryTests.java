@@ -14,7 +14,7 @@ import org.junit.Test;
 import static com.google.common.truth.Truth.assertThat;
 
 public class ServiceDiscoveryTests {
-  private String connectString = "localhost:2181";
+  private String connectString = "192.168.0.178:2181";
 
   /** Shows the basic usage for curator-x-discovery. */
   @Test
@@ -26,6 +26,7 @@ public class ServiceDiscoveryTests {
     String basePath = "/services";
 
     try {
+      // 1.
       client = CuratorFrameworkFactory.newClient(connectString, new RetryOneTime(1));
       client.start();
 

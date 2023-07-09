@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 		JdbcTemplateAutoConfiguration.class})
 @RestController //既然已经引入了web的支持，把它作为restController
 @Slf4j
-@ComponentScan("com.practice")
+@ComponentScan("com")
 @MapperScan("com.practice.mapper")
 public class Application {
 

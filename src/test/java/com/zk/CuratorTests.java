@@ -21,7 +21,7 @@ import static com.google.common.truth.Truth.assertThat;
  */
 public class CuratorTests {
   private CuratorFramework client;
-  private String connectString = "localhost:2181";
+  private String connectString = "192.168.0.177:2181";
   private RetryPolicy retryPolicy;
 
   @Before
@@ -77,7 +77,7 @@ public class CuratorTests {
             (CuratorFramework c, CuratorEvent event) -> {
               switch (event.getType()) {
                 case CREATE:
-                  System.out.printf("znode '%s' created\n", event.getPath());
+                  System.out.printf("============================>znode '%s' created\n", event.getPath());
                   // 2. getData
                   c.getData().inBackground().forPath(event.getPath());
                   break;
@@ -121,7 +121,7 @@ public class CuratorTests {
                   if (we.getType() == Watcher.Event.EventType.NodeDataChanged
                       && we.getPath().equals(path)) {
                     // 4. watch triggered
-                    System.out.printf("got the event for the triggered watch\n");
+                    System.out.printf("====================================>got the event for the triggered watch\n");
                     byte[] actualData = c.getData().forPath(path);
                     assertThat(actualData).isEqualTo(newData);
                   }

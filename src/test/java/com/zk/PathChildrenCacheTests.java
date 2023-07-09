@@ -16,7 +16,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public class PathChildrenCacheTests {
-  private String connectString = "localhost:2181";
+  private String connectString = "192.168.0.166:2181";
 
   @Test
   public void testBasics() throws Exception {
